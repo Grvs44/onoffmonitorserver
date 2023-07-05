@@ -27,3 +27,6 @@ class Status(models.Model):
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES, default=0)
     time = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = 'Statuses'
