@@ -17,9 +17,6 @@ class DeviceViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     filter_backends = [DeviceOwnerFilter]
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 
 class StatusViewSet(ModelViewSet):
     queryset = models.Status.objects.all()
