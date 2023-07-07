@@ -26,4 +26,4 @@ dependencies = [
 "Homepage" = "https://github.com/Grvs44/onoffmonitorserver"
 
 [tool.setuptools]
-packages = ["onoffmonitorserver"]
+packages = ["onoffmonitorserver", "onoffmonitorserver.migrations"]
