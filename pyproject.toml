@@ -18,12 +18,12 @@ classifiers = [
 ]
 dependencies = [
     "django>=4.2.3",
-    "django-rest-framework>=3.14.0",
+    "djangorestframework>=3.14.0",
     "django-rest-knox>=4.2.0",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/Grvs44/onoffmonitordevice"
+"Homepage" = "https://github.com/Grvs44/onoffmonitorserver"
 
 [tool.setuptools]
 packages = ["onoffmonitorserver"]
