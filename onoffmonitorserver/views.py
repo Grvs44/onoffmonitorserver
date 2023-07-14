@@ -9,7 +9,18 @@ from rest_framework.viewsets import ModelViewSet
 from . import models
 from .filters import DeviceOwnerFilter, StatusOwnerFilter
 from .permissions import IsDeviceOwner, IsStatusOwner
-from .serializers import DeviceSerializer, StatusSerializer
+from .serializers import MonitorSerializer, DeviceSerializer, StatusSerializer
+
+
+class MonitorViewSet(ModelViewSet):
+    """
+    ViewSet for managing Monitor objects
+    """
+    queryset = models.Monitor.objects.all()
+    serializer_class = MonitorSerializer
+    permission_classes = [IsAuthenticated, IsDeviceOwner]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    filter_backends = [DeviceOwnerFilter]
 
 
 class DeviceViewSet(ModelViewSet):
