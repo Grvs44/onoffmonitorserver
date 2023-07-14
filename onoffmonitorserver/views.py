@@ -1,4 +1,5 @@
 # pylint:disable=no-member
+from django_filters.rest_framework import DjangoFilterBackend
 from knox.auth import TokenAuthentication
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
@@ -31,7 +32,8 @@ class DeviceViewSet(ModelViewSet):
     serializer_class = DeviceSerializer
     permission_classes = [IsAuthenticated, IsDeviceOwner]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
-    filter_backends = [DeviceOwnerFilter]
+    filter_backends = [DeviceOwnerFilter, DjangoFilterBackend]
+    filterset_fields = ['monitor']
 
 
 class StatusViewSet(ModelViewSet):
