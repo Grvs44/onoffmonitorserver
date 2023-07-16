@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from . import models
@@ -22,6 +23,10 @@ class MonitorViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated, IsDeviceOwner]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     filter_backends = [DeviceOwnerFilter]
+
+    @action(methods=['GET'], detail=True, url_path='conf')
+    def device_list(self, request, pk: int):
+        return Response(models.Device.objects.filter(monitor_id=pk).values('id', 'gpio_pin'))
 
 
 class DeviceViewSet(ModelViewSet):
