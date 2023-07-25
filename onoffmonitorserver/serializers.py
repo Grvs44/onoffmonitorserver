@@ -3,17 +3,17 @@ from rest_framework.serializers import ModelSerializer, ValidationError, Current
 from . import models
 
 
-class MonitorSerializer(ModelSerializer):
+class BaseSerializer(ModelSerializer):
     user = HiddenField(default=CurrentUserDefault())
 
+
+class MonitorSerializer(BaseSerializer):
     class Meta:
         model = models.Device
         fields = ['id', 'name', 'user']
 
 
-class DeviceSerializer(ModelSerializer):
-    user = HiddenField(default=CurrentUserDefault())
-
+class DeviceSerializer(BaseSerializer):
     def validate(self, attrs):
         print(attrs)
         if attrs['monitor'].user != attrs['user']:
@@ -26,12 +26,11 @@ class DeviceSerializer(ModelSerializer):
 
 
 class StatusSerializer(ModelSerializer):
-    user = CurrentUserDefault()
     def validate(self, attrs):
-        if attrs['device'].user != self.user(self):
+        if attrs['device'].user != attrs['user']:
             raise ValidationError('Device owner must be the current user')
         return super().validate(attrs)
 
     class Meta:
         model = models.Status
-        fields = ['id', 'device', 'status', 'time']
+        fields = ['id', 'device', 'status', 'time', 'user']
