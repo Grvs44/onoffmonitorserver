@@ -22,7 +22,7 @@ class DeviceSerializer(ModelSerializer):
 
     class Meta:
         model = models.Device
-        fields = ['id', 'name', 'user', 'monitor', 'gpio_pin']
+        fields = ['id', 'name', 'user', 'monitor', 'gpio_input', 'gpio_led']
 
 
 class StatusSerializer(ModelSerializer):

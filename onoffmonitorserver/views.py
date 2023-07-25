@@ -25,7 +25,7 @@ class MonitorViewSet(ModelViewSet):
 
     @action(methods=['GET'], detail=True, url_path='conf')
     def device_list(self, request, pk: int):
-        return Response(models.Device.objects.filter(monitor_id=pk).values('id', 'gpio_pin'))
+        return Response(models.Device.objects.filter(monitor_id=pk).values('id', 'gpio_input', 'gpio_led'))
 
 
 class DeviceViewSet(ModelViewSet):

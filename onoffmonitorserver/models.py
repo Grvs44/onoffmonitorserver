@@ -26,8 +26,10 @@ class Device(models.Model):
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     monitor = models.ForeignKey(Monitor, on_delete=models.CASCADE)
-    gpio_pin = models.PositiveSmallIntegerField(
-        verbose_name='GPIO pin on monitor')
+    gpio_input = models.PositiveSmallIntegerField(
+        verbose_name='GPIO input pin on monitor')
+    gpio_led = models.PositiveSmallIntegerField(
+        verbose_name='GPIO LED pin on monitor', null=True, blank=True)
 
     def __str__(self):
         return f'{self.name} ({self.user})'
