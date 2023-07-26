@@ -10,9 +10,15 @@ class Monitor(models.Model):
     """
     Model for storing data about a monitor (such as "garage")
     """
+    GPIO_MODE_CHOICES = (
+        (0, 'BOARD'),
+        (1, 'BCM'),
+    )
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    gpio_mode = models.PositiveSmallIntegerField(
+        choices=GPIO_MODE_CHOICES, default=0, verbose_name='GPIO pin mode')
 
     def __str__(self):
         return f'{self.name} ({self.user})'

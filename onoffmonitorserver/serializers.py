@@ -8,7 +8,7 @@ class MonitorSerializer(ModelSerializer):
 
     class Meta:
         model = models.Monitor
-        fields = ['id', 'name', 'user']
+        fields = ['id', 'name', 'gpio_mode', 'user']
 
 
 class DeviceSerializer(ModelSerializer):
